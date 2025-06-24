@@ -6,8 +6,8 @@
 <div class="auth-container">
     <div class="form-box">
         <h2>Iniciar Sesión</h2>
-        <form action="#" method="POST">
-            {{-- @csrf --}}
+        <form action="{{ route('iniciarSesion') }}" method="POST">
+             @csrf
             <label for="email">Correo Electrónico</label>
             <input type="email" id="email" name="email" required>
 
@@ -21,5 +21,14 @@
             <p>¿No tienes cuenta? <a href="{{ route('registro') }}">Regístrate</a></p>
         </div>
     </div>
+    @if ($errors->any())
+    <div style="color: red;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
 </div>
 @endsection

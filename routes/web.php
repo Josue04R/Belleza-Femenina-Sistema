@@ -12,9 +12,15 @@ Route::get(
     '/login', [AuthController::class, 'showLoginForm']
 ) -> name('login');
 
+Route::post(
+    '/login', [AuthController::class, 'loguearse']
+) -> name('iniciarSesion');
+
 Route::get(
     '/registro', [AuthController::class, 'showRegisterForm']
 ) -> name('registro');
+
+Route::post('/registro', [AuthController::class, 'store'])->name('register');
 
 //permisos roles
 // Vista principal con la tabla de roles
