@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Models\Producto; 
 use App\Http\Controllers\CarritoTemporalController;
+use App\Models\VarianteProducto;
 
 
 Route::get(
@@ -125,13 +126,9 @@ Route::get('/pedidos_usuarios', function () {
 })-> name('pedidosUser');
 
 //carrito
-<<<<<<< HEAD
 Route::post('/carrito/agregar', [CarritoTemporalController::class, 'agregar'])->name('carrito.agregar');
-=======
-Route::get('/carrito', function () {
-    return view('carrito.index');
-})->middleware('auth')-> name('carrito');
->>>>>>> 9505a670c7b5bcbadb9fadce90ff1c9582e1de4c
+Route::get('/carrito', [CarritoTemporalController::class, 'mostrar'])->middleware('auth')->name('carrito');
+Route::post('/carrito/eliminar', [CarritoTemporalController::class, 'eliminar'])->name('carrito.eliminar');
 
 
 // Editar producto
