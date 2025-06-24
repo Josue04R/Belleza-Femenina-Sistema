@@ -147,3 +147,7 @@ Route::get('/carrito/pago', function () {
 Route::get('/compras', function () {
     return view('compras.index');
 })-> name('compras');
+
+Route::get('/inicio', function () {
+    return view('inicio.inicio');
+})->name('inicio');
