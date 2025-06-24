@@ -3,145 +3,128 @@
 @section('title', 'Gestión de Pedidos')
 
 @section('content')
-<div class="container py-4">
-    <h2 class="mb-4 text-center" style="color: #912f5d;">Gestión de Pedidos</h2>
-
-    <div class="text-end mb-3">
-        <button class="btn text-white" style="background-color: #912f5d;" data-bs-toggle="modal" data-bs-target="#modalNuevoPedido">
-            <i class="bi bi-plus-circle me-1"></i> Nuevo Pedido
-        </button>
-    </div>
-
-    <div class="table-responsive shadow-sm">
-        <table class="table table-bordered align-middle">
-            <thead class="text-white" style="background-color: #912f5d;">
-                <tr>
-                    <th>#</th>
-                    <th>Cliente</th>
-                    <th>Producto</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
-                    <th class="text-center">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Ana Gómez</td>
-                    <td>Laptop HP</td>
-                    <td><span class="badge bg-success">Enviado</span></td>
-                    <td>2025-06-15</td>
-                    <td class="text-center">
-                        <button class="btn btn-sm" style="background-color: #912f5d; color: white;" data-bs-toggle="modal" data-bs-target="#modalEditarPedido">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalEliminarPedido">
-                            <i class="bi bi-trash3"></i>
-                        </button>
-                    </td>
-                </tr>
-                <!-- Puedes duplicar esta fila para más ejemplos -->
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- Modal: Nuevo Pedido -->
-<div class="modal fade" id="modalNuevoPedido" tabindex="-1" aria-labelledby="modalNuevoPedidoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form>
-            <div class="modal-content">
-                <div class="modal-header text-white" style="background-color: #912f5d;">
-                    <h5 class="modal-title" id="modalNuevoPedidoLabel">Nuevo Pedido</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="cliente" class="form-label">Cliente</label>
-                        <input type="text" id="cliente" class="form-control" placeholder="Nombre del cliente">
-                    </div>
-                    <div class="mb-3">
-                        <label for="producto" class="form-label">Producto</label>
-                        <input type="text" id="producto" class="form-control" placeholder="Nombre del producto">
-                    </div>
-                    <div class="mb-3">
-                        <label for="estado" class="form-label">Estado</label>
-                        <select id="estado" class="form-select">
-                            <option>Pendiente</option>
-                            <option>Enviado</option>
-                            <option>Entregado</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="fecha" class="form-label">Fecha</label>
-                        <input type="date" id="fecha" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" style="background-color: #f2aec7; color: #6b0b21;" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn text-white" style="background-color: #912f5d;" onclick="alert('Pedido agregado (vista de diseño)')">Agregar Pedido</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- Modal: Editar Pedido -->
-<div class="modal fade" id="modalEditarPedido" tabindex="-1" aria-labelledby="modalEditarPedidoLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <form>
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: #912f5d;">
-                    <h5 class="modal-title text-white" id="modalEditarPedidoLabel">Editar Pedido</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="editCliente" class="form-label">Cliente</label>
-                        <input type="text" id="editCliente" class="form-control" value="Ana Gómez">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editProducto" class="form-label">Producto</label>
-                        <input type="text" id="editProducto" class="form-control" value="Laptop HP">
-                    </div>
-                    <div class="mb-3">
-                        <label for="editEstado" class="form-label">Estado</label>
-                        <select id="editEstado" class="form-select">
-                            <option>Pendiente</option>
-                            <option selected>Enviado</option>
-                            <option>Entregado</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editFecha" class="form-label">Fecha</label>
-                        <input type="date" id="editFecha" class="form-control" value="2025-06-15">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" style="background-color: #f2aec7; color: #6b0b21;" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn text-white" style="background-color: #912f5d;" onclick="alert('Cambios guardados (vista de diseño)')">Guardar Cambios</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- Modal: Confirmar Eliminación -->
-<div class="modal fade" id="modalEliminarPedido" tabindex="-1" aria-labelledby="modalEliminarPedidoLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #912f5d;">
-                <h5 class="modal-title text-white" id="modalEliminarPedidoLabel">Confirmar Eliminación</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
-            <div class="modal-body text-center">
-                <p>¿Estás seguro que deseas eliminar este pedido?</p>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn" style="background-color: #f2aec7; color: #6b0b21;" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn text-white" style="background-color: #912f5d;" onclick="alert('Pedido eliminado (vista de diseño)')">Eliminar</button>
-            </div>
+<br><br>
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2 class="display-5 fw-bold" style="color: #d6336c;">
+                <i class="bi bi-bag-check me-2"></i>Gestión de Pedidos
+            </h2>
+            <p class="text-muted">Administra los pedidos de tus clientes con estilo</p>
         </div>
     </div>
+
+    <div class="card-body p-0 bg-white shadow-sm rounded-3">
+        <div class="table-responsive p-3">
+            <table class="table table-borderless table-striped align-middle mb-0">
+                <thead>
+                    <tr class="text-uppercase small text-white">
+                        <th class="py-3 px-4">#</th>
+                        <th class="py-3 px-4">ID Venta</th>
+                        <th class="py-3 px-4">Ubicación</th>
+                        <th class="py-3 px-4">Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Fila 1 -->
+                    <tr class="align-middle">
+                        <td class="px-4">1</td>
+                        <td class="px-4">1023</td>
+                        <td class="px-4">todas la unión sur</td>
+                        <td class="px-4">
+                            <span class="badge bg-warning text-dark status-badge">
+                                <i class="bi bi-clock me-1"></i>Pendiente
+                            </span>
+                        </td>
+                    </tr>
+
+                    <!-- Fila 2 -->
+                    <tr class="align-middle">
+                        <td class="px-4">2</td>
+                        <td class="px-4">1034</td>
+                        <td class="px-4">todas la unión sur</td>
+                        <td class="px-4">
+                            <span class="badge bg-pink text-white status-badge">
+                                <i class="bi bi-truck me-1"></i>Enviado
+                            </span>
+                        </td>
+                    </tr>
+
+                    <!-- Fila 3 -->
+                    <tr class="align-middle">
+                        <td class="px-4">3</td>
+                        <td class="px-4">1045</td>
+                        <td class="px-4">La Union Sur</td>
+                        <td class="px-4">
+                            <span class="badge bg-success text-white status-badge">
+                                <i class="bi bi-check-circle me-1"></i>Entregado
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card-footer bg-light">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mb-0">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Siguiente</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
+
+<style>
+  /* Gradiente en la cabecera */
+  .table thead tr {
+    background: linear-gradient(135deg, #d6336c 0%, #ff6b9e 100%);
+  }
+  /* Zebra soft */
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(214, 51, 108, 0.03);
+  }
+  /* Hover elevación */
+  .table tbody tr {
+    transition: transform .2s, box-shadow .2s;
+  }
+  .table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  /* Badges de estado uniformes */
+  .status-badge {
+    display: inline-block;
+    min-width: 100px;
+    text-align: center;
+    font-size: .875rem;
+  }
+
+  /* Color de badge personalizado */
+  .bg-pink {
+    background-color: #d6336c !important;
+  }
+
+  /* Paginación rosa */
+  .pagination .page-link {
+    color: #d6336c !important;
+  }
+  .pagination .page-item.active .page-link {
+    background-color: #d6336c !important;
+    border-color: #d6336c !important;
+    color: #fff !important;
+  }
+  .pagination .page-link:hover {
+    background-color: rgba(214,51,108,0.1);
+  }
+</style>
 @endsection

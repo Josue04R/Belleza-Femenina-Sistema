@@ -9,11 +9,19 @@ use App\Http\Controllers\CarritoTemporalController;
 
 Route::get(
     '/login', [AuthController::class, 'showLoginForm']
-) -> name('login');
+)->middleware('guest')->name('login');
+
+Route::post(
+    '/login', [AuthController::class, 'loguearse']
+)->middleware('guest')->name('iniciarSesion');
 
 Route::get(
     '/registro', [AuthController::class, 'showRegisterForm']
-) -> name('registro');
+)->middleware('guest')->name('registro');
+
+Route::post('/registro', [AuthController::class, 'store'])->middleware('guest')->name('register');
+
+Route::post('/logout',[AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 //permisos roles
 // Vista principal con la tabla de roles
@@ -106,18 +114,24 @@ Route::get('/gastos', function () {
 //perfil usuarios clientes
 Route::get('/perfil', function () {
     return view('perfil.index');
-})-> name('perfil');
+})->middleware('auth')-> name('perfil');
 
 Route::get('/perfil/editar', function () {
     return view('perfil.editar');
-})-> name('perfil.editar');
+})->middleware('auth')-> name('perfil.editar');
 
 Route::get('/pedidos_usuarios', function () {
     return view('pedidos_usuarios.index');
 })-> name('pedidosUser');
 
 //carrito
+<<<<<<< HEAD
 Route::post('/carrito/agregar', [CarritoTemporalController::class, 'agregar'])->name('carrito.agregar');
+=======
+Route::get('/carrito', function () {
+    return view('carrito.index');
+})->middleware('auth')-> name('carrito');
+>>>>>>> 9505a670c7b5bcbadb9fadce90ff1c9582e1de4c
 
 
 // Editar producto
