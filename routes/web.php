@@ -118,9 +118,11 @@ Route::get('/perfil', function () {
     return view('perfil.index');
 })->middleware('auth')-> name('perfil');
 
-Route::get('/perfil/editar', function () {
-    return view('perfil.editar');
-})->middleware('auth')-> name('perfil.editar');
+Route::get('/perfil/editar', [PerfilUsuarioController::class, 'edit']
+)->middleware('auth')-> name('perfil.editar');
+
+Route::post('/perfil/editar', [PerfilUsuarioController::class, 'update']
+)->middleware('auth')-> name('perfil.update');
 
 Route::get('/pedidos_usuarios', function () {
     return view('pedidos_usuarios.index');

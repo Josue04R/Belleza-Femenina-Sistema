@@ -422,73 +422,75 @@
     </style>
 </head>
 <body>
-<nav style="background-color: #d6336c; padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1030; display: flex; align-items: center; justify-content: space-between;">
-  
-  <div style="width: 30%; text-align: left; padding-left: 1rem;">
-    <a href="#" style="color: white; font-weight: bold; font-size: 1.4rem; text-decoration: none;">Belleza Femenina</a>
-  </div>
-
-  <div style="width: 40%; text-align: center;">
-    <form style="display: inline-flex; width: 100%; max-width: 500px;">
-      <input type="search" placeholder="Buscar productos..." aria-label="Buscar"
-             style="flex: 1; padding: 0.4rem 0.6rem; border: none; border-radius: 4px 0 0 4px;" />
-      <button type="submit" style="background: white; border: none; border-radius: 0 4px 4px 0; padding: 0 0.75rem;">
-        🔍
-      </button>
-    </form>
-  </div>
-
-  <div style="width: 30%; text-align: right; padding-right: 1rem;">
-    <a href="#" style="color: white; margin-left: 1rem; text-decoration: none;">Pedidos</a>
-    <a href="{{ route('compras') }}" style="color: white; margin-left: 1rem; text-decoration: none;">Compras</a>
-    <a href="#" style="color: white; position: relative; text-decoration: none; display: inline-block;margin-left: 1rem;">
-        <span style="font-size: 1.5rem;">🛒</span>
-        <span style="
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            color: white;
-            border: 2px solid #d6336c;
-            border-radius: 50%;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            font-weight: bold;
-            line-height: 1;
-            min-width: 20px;
-            text-align: center;
-        ">0</span>
-    </a>
-
-
-    <div style="position: relative; display: inline-block; margin-left: 1rem;">
-         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" style="color: white; text-decoration: none; display: flex; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person-circle" style="margin-right: 5px;"></i> Cuenta
-          </a>
-          <ul class="dropdown-menu">
-            @guest
-                <li><a class="dropdown-item" href="{{route('login')}}">Iniciar sesión</a></li>
-                <li><a class="dropdown-item" href="{{route('registro')}}">Registrarse</a></li>
-            @endguest
-
-            @auth
-                <li><a class="dropdown-item" href="{{route('perfil')}}">Perfil</a></li>
-                <li>
-                    <a class="dropdown-item" href="#"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-
-                </li>
-            @endauth
-          </ul>
+    <nav style="background-color: #d6336c; padding: 1rem 0;  width: 100%; top: 0; z-index: 1030; display: flex; align-items: center; justify-content: space-between;">
+    
+    <div style="width: 30%; text-align: left; padding-left: 1rem;">
+        <a href="#" style="color: white; font-weight: bold; font-size: 1.4rem; text-decoration: none;">Belleza Femenina</a>
     </div>
 
-  </div>
+    <div style="width: 40%; text-align: center;">
+        <form style="display: inline-flex; width: 100%; max-width: 500px;">
+        <input type="search" placeholder="Buscar productos..." aria-label="Buscar"
+                style="flex: 1; padding: 0.4rem 0.6rem; border: none; border-radius: 4px 0 0 4px;" />
+        <button type="submit" style="background: white; border: none; border-radius: 0 4px 4px 0; padding: 0 0.75rem;">
+            🔍
+        </button>
+        </form>
+    </div>
+
+    <div style="width: 30%; text-align: right; padding-right: 1rem;">
+        @auth
+        <a href="#" style="color: white; margin-left: 1rem; text-decoration: none;">Pedidos</a>
+        <a href="{{ route('compras') }}" style="color: white; margin-left: 1rem; text-decoration: none;">Compras</a>
+        @endauth
+        <a href="#" style="color: white; position: relative; text-decoration: none; display: inline-block;margin-left: 1rem;">
+            <span style="font-size: 1.5rem;">🛒</span>
+            <span style="
+                position: absolute;
+                top: -5px;
+                right: -10px;
+                color: white;
+                border: 2px solid #d6336c;
+                border-radius: 50%;
+                font-size: 0.7rem;
+                padding: 2px 6px;
+                font-weight: bold;
+                line-height: 1;
+                min-width: 20px;
+                text-align: center;
+            ">0</span>
+        </a>
+
+
+        <div style="position: relative; display: inline-block; margin-left: 1rem;">
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" style="color: white; text-decoration: none; display: flex; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle" style="margin-right: 5px;"></i> Cuenta
+            </a>
+            <ul class="dropdown-menu">
+                @guest
+                    <li><a class="dropdown-item" href="{{route('login')}}">Iniciar sesión</a></li>
+                    <li><a class="dropdown-item" href="{{route('registro')}}">Registrarse</a></li>
+                @endguest
+
+                @auth
+                    <li><a class="dropdown-item" href="{{route('perfil')}}">Perfil</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+
+                    </li>
+                @endauth
+            </ul>
+        </div>
+
+    </div>
 
 </nav>
 
