@@ -3,10 +3,25 @@
 @section('title', 'Editar Perfil')
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="container py-5" style="max-width: 600px;">
     <h2 class="mb-4 text-center" style="color: #912f5d;">Editar Perfil</h2>
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+        <script>
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: "{{ session('success') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+        </script>
     @endif
 
     <form action="{{ route('perfil.update') }}" id="formEditarPerfil" class="needs-validation card shadow p-4 border-0 rounded-4" novalidate method="POST">
