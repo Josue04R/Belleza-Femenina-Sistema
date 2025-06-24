@@ -1,0 +1,74 @@
+:root {
+    --color-primario: #912f5d;
+    --color-primario-hover: #7a294d;
+    --color-secundario: #f2aec7;
+    --color-texto-secundario: #6b0b21;
+}
+
+#buscarRol {
+    max-width: 320px;
+    transition: box-shadow 0.3s ease;
+}
+
+#buscarRol:focus {
+    box-shadow: 0 0 8px rgba(145, 47, 93, 0.6);
+    border-color: var(--color-primario);
+    outline: none;
+}
+
+.table-responsive {
+    background-color: #fff;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 0.25rem 0.75rem rgba(145, 47, 93, 0.2);
+}
+
+.table thead {
+    background: linear-gradient(90deg, var(--color-primario), var(--color-primario-hover));
+    color: white;
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background-color: #fde9f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.badge-permiso {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-secundario);
+    font-weight: 500;
+}
+
+.btn-primario {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.btn-primario:hover {
+    background-color: var(--color-primario-hover);
+}
+
+.btn-outline-primario {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+.btn-outline-primario:hover {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.modal-header.bg-primario {
+    background: linear-gradient(90deg, var(--color-primario), var(--color-primario-hover));
+    color: white;
+}
+
+.modal-content.border-primario {
+    border: 2px solid var(--color-primario);
+}
+
+select[multiple] {
+    height: 130px;
+}

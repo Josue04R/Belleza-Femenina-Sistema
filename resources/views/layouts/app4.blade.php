@@ -309,6 +309,9 @@
             }
         }
     </style>
+
+    @yield('page_css')
+    
 </head>
 <body>
     @yield('content')
