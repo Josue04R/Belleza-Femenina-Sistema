@@ -1,5 +1,6 @@
 {{-- filepath: resources/views/inicio/inicio.blade.php --}}
-@extends('layouts.app4')
+@extends('layouts.app3')
+
 
 @section('content')
     <!-- Hero Section -->
