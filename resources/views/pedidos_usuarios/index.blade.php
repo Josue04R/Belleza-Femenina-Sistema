@@ -54,7 +54,7 @@
                     <tr class="align-middle">
                         <td class="px-4">3</td>
                         <td class="px-4">1045</td>
-                        <td class="px-4">todas la unión sur</td>
+                        <td class="px-4">La Union Sur</td>
                         <td class="px-4">
                             <span class="badge bg-success text-white status-badge">
                                 <i class="bi bi-check-circle me-1"></i>Entregado
