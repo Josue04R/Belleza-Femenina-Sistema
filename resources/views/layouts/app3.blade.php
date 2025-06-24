@@ -517,7 +517,7 @@
             <div class="col-lg-3 mb-4 d-flex flex-column align-items-center">
                 <h3 class="footer_title">Información</h3>
                 <ul class="footer_links list-unstyled text-center">
-                    <li><a href="#">Sobre nosotros</a></li>
+                    <li><a href="{{ route('sobre_nosotros') }}">Sobre nosotros</a></li>
                     <li><a href="#">Blog de moda</a></li>
                     <li><a href="#">Tendencias</a></li>
                     <li><a href="#">Guía de tallas</a></li>

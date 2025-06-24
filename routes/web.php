@@ -154,7 +154,12 @@ Route::get('/compras', function () {
     return view('compras.index');
 })-> name('compras');
 
+
 Route::get('/', function () {
     $productos = Producto::with(['variantes', 'categoria'])->get();
     return view('inicio.inicio', compact('productos'));
 })->name('inicio');
+
+Route::get('/sobre-nosotros', function () {
+    return view('anexos.sobre_nosotros');
+})->name('sobre_nosotros');
