@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerfilUsuarioController;
+use App\Models\Producto; 
 
 Route::get('/', function () {
     return view('welcome');
@@ -71,8 +72,10 @@ Route::get('/categoria_productos/{id}/editar', function ($id) {
 
 //productos
 Route::get('/productos', function () {
-    return view('productos.index');
-})-> name('productos');
+    $productos = Producto::with(['variantes', 'categoria'])->get();
+    return view('productos.index', compact('productos'));
+})->name('productos');
+
 
 // Crear nuevo producto
 Route::get('/productos/agregar', function () {

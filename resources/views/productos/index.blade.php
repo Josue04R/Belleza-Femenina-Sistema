@@ -92,36 +92,37 @@
         </a>
     </div>
 
-    <div class="table-responsive shadow-sm rounded">
-        <table class="table table-striped table-hover align-middle">
-            <thead class="text-center">
-                <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Categoría</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                <tr>
-                    <td>1</td>
-                    <td>Camiseta Blanca</td>
-                    <td>Ropa Casual</td>
-                    <td>$12.99</td>
-                    <td>35</td>
-                    <td>
-                        <div class="d-flex justify-content-center gap-2 flex-wrap">
-                            <a href="{{ route('productos.ver', 1) }}" class="btn btn-sm btn-outline-personalizado">Ver</a>
-                            <a href="{{ route('productos.editar', 1) }}" class="btn btn-sm btn-outline-personalizado">Editar</a>
-                            <button class="btn btn-sm btn-outline-eliminar" data-bs-toggle="modal" data-bs-target="#modalEliminarProducto">Eliminar</button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Stock total</th>
+            <th>Variantes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($productos as $producto)
+            <tr>
+                <td>{{ $producto->nombre }}</td>
+                <td>{{ $producto->categoriaProducto->categoria ?? 'Sin categoría' }}</td>
+                <td>${{ number_format($producto->precio, 2) }}</td>
+                <td>{{ $producto->variantes->sum('stock') }}</td>
+                <td>
+                    <ul>
+                        @foreach($producto->variantes as $variante)
+                            <li>
+                                Talla: {{ $variante->talla }}, Color: {{ $variante->color }}, Stock: {{ $variante->stock }}, Precio: ${{ number_format($variante->precio, 2) }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
 </div>
 
 <!-- Modal Confirmar Eliminación -->
