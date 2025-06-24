@@ -11,17 +11,19 @@ Route::get('/', function () {
 
 Route::get(
     '/login', [AuthController::class, 'showLoginForm']
-) -> name('login');
+)->middleware('guest')->name('login');
 
 Route::post(
     '/login', [AuthController::class, 'loguearse']
-) -> name('iniciarSesion');
+)->middleware('guest')->name('iniciarSesion');
 
 Route::get(
     '/registro', [AuthController::class, 'showRegisterForm']
-) -> name('registro');
+)->middleware('guest')->name('registro');
 
-Route::post('/registro', [AuthController::class, 'store'])->name('register');
+Route::post('/registro', [AuthController::class, 'store'])->middleware('guest')->name('register');
+
+Route::post('/logout',[AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 //permisos roles
 // Vista principal con la tabla de roles
@@ -114,11 +116,11 @@ Route::get('/gastos', function () {
 //perfil usuarios clientes
 Route::get('/perfil', function () {
     return view('perfil.index');
-})-> name('perfil');
+})->middleware('auth')-> name('perfil');
 
 Route::get('/perfil/editar', function () {
     return view('perfil.editar');
-})-> name('perfil.editar');
+})->middleware('auth')-> name('perfil.editar');
 
 Route::get('/pedidos_usuarios', function () {
     return view('pedidos_usuarios.index');
@@ -127,7 +129,7 @@ Route::get('/pedidos_usuarios', function () {
 //carrito
 Route::get('/carrito', function () {
     return view('carrito.index');
-})-> name('carrito');
+})->middleware('auth')-> name('carrito');
 
 // Agregar producto
 Route::get('/carrito/agregar', function () {

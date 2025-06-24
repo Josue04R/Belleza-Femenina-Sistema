@@ -461,29 +461,31 @@
 
 
     <div style="position: relative; display: inline-block; margin-left: 1rem;">
-    <a href="#" style="color: white; text-decoration: none; display: flex; align-items: center;">
-        <i class="bi bi-person-circle" style="margin-right: 5px;"></i> Cuenta ▼
-    </a>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" style="color: white; text-decoration: none; display: flex; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle" style="margin-right: 5px;"></i> Cuenta
+          </a>
+          <ul class="dropdown-menu">
+            @guest
+                <li><a class="dropdown-item" href="{{route('login')}}">Iniciar sesión</a></li>
+                <li><a class="dropdown-item" href="{{route('registro')}}">Registrarse</a></li>
+            @endguest
 
-    <div style="
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: #d6336c;
-        border-radius: 5px;
-        min-width: 200px;
-        padding: 0.5rem 0;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        display: none; /* cambiar a block si quieres verlo directamente */
-    ">
-        <!-- Estas tres serían las opciones visibles si el usuario NO está logueado -->
-        <a href="#" style="color: white; text-decoration: none; display: block; padding: 8px 15px;">Iniciar sesión</a>
-        <a href="#" style="color: white; text-decoration: none; display: block; padding: 8px 15px;">Registrarse</a>
+            @auth
+                <li><a class="dropdown-item" href="{{route('perfil')}}">Perfil</a></li>
+                <li>
+                    <a class="dropdown-item" href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar sesión
+                    </a>
 
-        <!-- Estas serían las opciones que solo se ven si el usuario ESTÁ logueado -->
-        <a href="#" style="color: white; text-decoration: none; display: block; padding: 8px 15px;">Gestionar perfil</a>
-        <a href="#" style="color: white; text-decoration: none; display: block; padding: 8px 15px; color: #ffc0cb;">Cerrar sesión</a>
-    </div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                </li>
+            @endauth
+          </ul>
     </div>
 
   </div>

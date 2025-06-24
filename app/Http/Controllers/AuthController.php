@@ -31,7 +31,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // Redirige al dashboard o página protegida
-            return redirect()->intended('carrito');
+            return redirect()->intended('/');
         }
 
         // Si falló la autenticación
@@ -63,7 +63,7 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
-         Auth::logout();
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
