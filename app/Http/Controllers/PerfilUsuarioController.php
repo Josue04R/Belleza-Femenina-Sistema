@@ -46,4 +46,14 @@ class PerfilUsuarioController extends Controller
 
         return redirect()->route('perfil.editar')->with('success', 'Perfil actualizado con éxito.');
     }
+
+    public function delete(){
+        /** @var User $user */
+        $user = Auth::user();
+
+        Auth::logout();          
+        $user->delete();        
+
+        return redirect('/');
+    }
 }

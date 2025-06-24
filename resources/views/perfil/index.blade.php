@@ -3,6 +3,8 @@
 @section('title', 'Perfil de Usuario')
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <div class="container py-5" style="max-width: 600px;">
     <h2 class="mb-5 text-center" style="color: #912f5d; font-weight: 700; font-family: 'Montserrat', sans-serif;">
        Perfil
@@ -24,8 +26,37 @@
                     onmouseout="this.style.backgroundColor='#912f5d';">
                     Editar Perfil
                 </a>
+                <form id="deleteForm" action="{{ route('perfil.eliminar') }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" id="deleteButton" class="btn btn-danger px-4 py-2" style="border-radius: 30px; font-weight: 600;">
+                        Eliminar Perfil
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('deleteButton').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Esta acción eliminará tu cuenta permanentemente.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('deleteForm').submit();
+        }
+    });
+});
+</script>
+
 @endsection

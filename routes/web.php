@@ -124,6 +124,9 @@ Route::get('/perfil/editar', [PerfilUsuarioController::class, 'edit']
 Route::post('/perfil/editar', [PerfilUsuarioController::class, 'update']
 )->middleware('auth')-> name('perfil.update');
 
+Route::post('/perfil/delete',[PerfilUsuarioController::class,'delete'])
+->middleware('auth')->name('perfil.eliminar');
+
 Route::get('/pedidos_usuarios', function () {
     return view('pedidos_usuarios.index');
 })-> name('pedidosUser');
