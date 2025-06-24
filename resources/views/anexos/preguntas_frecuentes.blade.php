@@ -89,9 +89,7 @@
         <h2 class="section-title text-center">Preguntas Frecuentes</h2>
 
         <div class="accordion" id="faqAccordion">
-            {{-- Aquí siguen tus items sin cambio --}}
-            {{-- Puedes dejarlos tal cual, ya están bien estructurados --}}
-            {{-- Solo se mejora el diseño visual, no la lógica --}}
+            
             @for ($i = 1; $i <= 10; $i++)
                 @php
                     $preguntas = [
