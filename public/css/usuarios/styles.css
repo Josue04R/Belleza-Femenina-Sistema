@@ -1,0 +1,198 @@
+:root {
+    --color-primario: rgb(214, 51, 127);
+    --color-primario-hover: rgb(175, 47, 105);
+    --color-secundario: #f2aec7;
+    --color-texto-secundario: rgb(185, 36, 71);
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 960px;
+}
+
+h2 {
+    color: var(--color-primario);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Input búsqueda */
+input.form-control {
+    border: 2px solid var(--color-primario);
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease;
+}
+
+input.form-control:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 5px var(--color-secundario);
+}
+
+/* Botón Agregar Nuevo */
+button.btn-danger {
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    border-radius: 50px;
+    padding: 0.5rem 1.8rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(145, 47, 93, 0.3);
+}
+
+button.btn-danger:hover {
+    background-color: var(--color-primario-hover);
+    border-color: var(--color-primario-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(187, 53, 113, 0.6);
+}
+
+/* Tabla */
+table.table {
+    border-radius: 0.7rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1rem rgba(145, 47, 93, 0.1);
+    background: white;
+}
+
+thead.table-danger {
+    background-color: var(--color-secundario) !important;
+}
+
+thead.table-danger th {
+    color: var(--color-texto-secundario) !important;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-secundario);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Badges */
+.badge.bg-success {
+    background-color: var(--color-primario) !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.4em 0.75em;
+}
+
+/* Botones en acciones */
+.btn-outline-danger,
+.btn-outline-secondary {
+    border-radius: 0.5rem;
+    font-weight: 600;
+    padding: 0.25rem 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-danger {
+    color: var(--color-primario);
+    border-color: var(--color-primario);
+}
+
+.btn-outline-danger:hover {
+    background-color: var(--color-primario);
+    color: white;
+    border-color: var(--color-primario);
+    box-shadow: 0 4px 8px rgba(145, 47, 93, 0.5);
+}
+
+.btn-outline-secondary {
+    color: var(--color-texto-secundario);
+    border-color: var(--color-texto-secundario);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--color-texto-secundario);
+    color: white;
+    border-color: var(--color-texto-secundario);
+    box-shadow: 0 4px 8px rgba(107, 11, 33, 0.5);
+}
+
+/* Modal headers */
+.modal-header.bg-danger {
+    background-color: var(--color-primario) !important;
+    color: white !important;
+    font-weight: 700;
+    border-bottom: none;
+}
+
+/* Modal botones */
+.modal-footer .btn-secondary {
+    background-color: transparent;
+    color: var(--color-texto-secundario);
+    border: 2px solid var(--color-texto-secundario);
+    border-radius: 0.5rem;
+    font-weight: 600;
+    padding: 0.4rem 1.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: var(--color-texto-secundario);
+    color: white;
+    box-shadow: 0 4px 8px rgba(107, 11, 33, 0.6);
+}
+
+.modal-footer .btn-danger {
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    border-radius: 0.5rem;
+    font-weight: 700;
+    padding: 0.4rem 1.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer .btn-danger:hover {
+    background-color: var(--color-primario-hover);
+    border-color: var(--color-primario-hover);
+    box-shadow: 0 6px 12px rgba(122, 41, 77, 0.7);
+}
+
+/* Modal content border y sombra */
+.modal-content.border-danger {
+    border-radius: 1rem;
+    border: 3px solid var(--color-primario);
+    box-shadow: 0 1rem 2rem rgba(145, 47, 93, 0.3);
+}
+
+/* Icono advertencia modal eliminar */
+.modal-body i.bi-exclamation-triangle-fill {
+    font-size: 3rem;
+}
+
+/* Form controls dentro modal */
+.modal-body input.form-control,
+.modal-body select.form-select {
+    border: 2px solid var(--color-primario);
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease;
+}
+
+.modal-body input.form-control:focus,
+.modal-body select.form-select:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 8px var(--color-secundario);
+}
+
+.btn-danger {
+    background-color: var(--color-primario) !important;
+    border-color: var(--color-primario) !important;
+    color: white !important;
+    border-radius: 50px;
+    padding: 0.5rem 1.8rem;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(145, 47, 93, 0.3);
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-danger:hover {
+    background-color: var(--color-primario-hover) !important;
+    border-color: var(--color-primario-hover) !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(187, 53, 113, 0.6);
+}

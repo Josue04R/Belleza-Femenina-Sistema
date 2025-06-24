@@ -1,0 +1,47 @@
+/* Gradiente en la cabecera */
+.table thead tr {
+    background: linear-gradient(135deg, #d6336c 0%, #ff6b9e 100%);
+}
+
+/* Zebra soft */
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(214, 51, 108, 0.03);
+}
+
+/* Hover elevación */
+.table tbody tr {
+    transition: transform .2s, box-shadow .2s;
+}
+
+.table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Badges de estado uniformes */
+.status-badge {
+    display: inline-block;
+    min-width: 100px;
+    text-align: center;
+    font-size: .875rem;
+}
+
+/* Color de badge personalizado */
+.bg-pink {
+    background-color: #d6336c !important;
+}
+
+/* Paginación rosa */
+.pagination .page-link {
+    color: #d6336c !important;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #d6336c !important;
+    border-color: #d6336c !important;
+    color: #fff !important;
+}
+
+.pagination .page-link:hover {
+    background-color: rgba(214, 51, 108, 0.1);
+}

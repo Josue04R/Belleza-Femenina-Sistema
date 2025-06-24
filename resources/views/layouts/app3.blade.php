@@ -420,6 +420,9 @@
             }
         }
     </style>
+
+    @yield('page_css')
+    
 </head>
 <body>
 <nav style="background-color: #d6336c; padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1030; display: flex; align-items: center; justify-content: space-between;">

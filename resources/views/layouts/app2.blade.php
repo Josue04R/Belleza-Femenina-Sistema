@@ -121,6 +121,7 @@
             margin-top: auto;
         }
     </style>
+    @yield('page_css')
 </head>
 <body>
     <nav class="navbar navbar-expand-lg fixed-top">
