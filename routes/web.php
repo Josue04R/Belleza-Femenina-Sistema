@@ -162,3 +162,8 @@ Route::get('/compras', function () {
 Route::get('/', function () {
     return view('inicio.inicio');
 })->name('inicio');
+
+
+Route::get('/sobre-nosotros', function () {
+    return view('anexos.sobre_nosotros');
+})->name('sobre_nosotros');
