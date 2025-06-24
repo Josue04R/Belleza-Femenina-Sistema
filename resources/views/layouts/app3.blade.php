@@ -440,7 +440,7 @@
 
   <div style="width: 30%; text-align: right; padding-right: 1rem;">
     <a href="#" style="color: white; margin-left: 1rem; text-decoration: none;">Pedidos</a>
-    <a href="#" style="color: white; margin-left: 1rem; text-decoration: none;">Compras</a>
+    <a href="{{ route('compras') }}" style="color: white; margin-left: 1rem; text-decoration: none;">Compras</a>
     <a href="#" style="color: white; position: relative; text-decoration: none; display: inline-block;margin-left: 1rem;">
         <span style="font-size: 1.5rem;">🛒</span>
         <span style="
