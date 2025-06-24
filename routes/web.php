@@ -172,3 +172,7 @@ Route::get('/', function () {
 Route::get('/sobre-nosotros', function () {
     return view('anexos.sobre_nosotros');
 })->name('sobre_nosotros');
+
+Route::get('/preguntas-frecuentes', function () {
+    return view('anexos.preguntas_frecuentes');
+})->name('preguntas_frecuentes');

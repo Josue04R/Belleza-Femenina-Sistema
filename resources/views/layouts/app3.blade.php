@@ -526,7 +526,7 @@
                     <li><a href="#">Blog de moda</a></li>
                     <li><a href="#">Tendencias</a></li>
                     <li><a href="#">Guía de tallas</a></li>
-                    <li><a href="#">Preguntas frecuentes</a></li>
+                    <li><a href="{{ route('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
                 </ul>
             </div>
 
