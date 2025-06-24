@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Models\Producto; 
+use App\Http\Controllers\CarritoTemporalController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get(
     '/login', [AuthController::class, 'showLoginForm']
@@ -119,14 +117,8 @@ Route::get('/pedidos_usuarios', function () {
 })-> name('pedidosUser');
 
 //carrito
-Route::get('/carrito', function () {
-    return view('carrito.index');
-})-> name('carrito');
+Route::post('/carrito/agregar', [CarritoTemporalController::class, 'agregar'])->name('carrito.agregar');
 
-// Agregar producto
-Route::get('/carrito/agregar', function () {
-    return view('carrito.agregar');
-})->name('carrito.agregar');
 
 // Editar producto
 Route::get('/carrito/editar/{id}', function ($id) {
@@ -152,5 +144,6 @@ Route::get('/compras', function () {
 })-> name('compras');
 
 Route::get('/', function () {
-    return view('inicio.inicio');
+    $productos = Producto::with(['variantes', 'categoria'])->get();
+    return view('inicio.inicio', compact('productos'));
 })->name('inicio');
