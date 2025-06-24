@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #ffe0ec, #ffd3e0);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1s ease-in;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+}
+
+.form-box {
+    background-color: #fff;
+    padding: 35px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(213, 106, 161, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.form-box:hover {
+    transform: scale(1.01);
+}
+
+h2 {
+    text-align: center;
+    color: #912f5d;
+    font-size: 28px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #d46aa1;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    color: #444;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    transition: 0.2s;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #d46aa1;
+    box-shadow: 0 0 0 3px rgba(212, 106, 161, 0.2);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #d46aa1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #c04d89;
+}
+
+.extra-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.95em;
+}
+
+.extra-link a {
+    color: #d46aa1;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.extra-link a:hover {
+    color: #c04d89;
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+    .form-box {
+        padding: 25px 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
