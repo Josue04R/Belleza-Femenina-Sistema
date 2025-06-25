@@ -55,7 +55,7 @@
 
 
         <div style="position: relative; display: inline-block; margin-left: 1rem;">
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" style="list-style: none;">
             <a class="nav-link dropdown-toggle" style="color: white; text-decoration: none; display: flex; align-items: center;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person-circle" style="margin-right: 5px;"></i> Cuenta
             </a>
