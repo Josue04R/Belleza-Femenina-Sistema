@@ -1,102 +1,144 @@
-{{-- filepath: resources/views/inicio/inicio.blade.php --}}
 @extends('layouts.app3')
 
+@section('page_css')
+  <link href="{{ asset('css/inicio/styles.css') }}" rel="stylesheet">
+@endsection
 
 @section('content')
-   @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+    <!-- Alertas (solo diseño mejorado) -->
+    @if(session('success'))
+        <div class="alert alert-success alert-elegante alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
     @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
+        <div class="alert alert-danger alert-elegante alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     @endif
 
-
-    <div class="row">
-        @foreach ($productos as $producto)
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ $producto->imagenUrl ?? 'https://via.placeholder.com/300' }}" class="card-img-top" alt="{{ $producto->nombre }}">
-                    <div class="card-body text-center">
-                        <h5>{{ $producto->nombre }}</h5>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-producto-{{ $producto->id }}">
-                            Añadir al carrito
+    <!-- Productos - Solo rediseño visual -->
+    <div class="container-productos">
+        <div class="productos-grid">
+            @foreach ($productos as $producto)
+                <!-- Tarjeta de Producto (nuevo diseño) -->
+                <div class="producto-card">
+                    @if($producto->destacado)
+                        <span class="producto-badge">⭐ Destacado</span>
+                    @endif
+                    
+                    <div class="producto-imagen-container">
+                        <img src="{{ $producto->imagenUrl ?? 'https://via.placeholder.com/300' }}" 
+                             class="producto-imagen" 
+                             alt="{{ $producto->nombre }}">
+                    </div>
+                    
+                    <div class="producto-info">
+                        <h3 class="producto-nombre">{{ $producto->nombre }}</h3>
+                        
+                        @if($producto->variantes->isNotEmpty())
+                            <p class="producto-precio">${{ number_format($producto->variantes->min('precio'), 2) }}</p>
+                        @endif
+                        
+                        <button class="producto-btn" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#modal-producto-{{ $producto->id }}">
+                            <i class="fas fa-shopping-bag me-1"></i> Añadir
                         </button>
                     </div>
                 </div>
-            </div>
 
-
-            <!-- Modal -->
-            <div class="modal fade" id="modal-producto-{{ $producto->id }}" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <form action="{{ route('carrito.agregar') }}" method="POST">
-                            @csrf
-                            <div class="modal-header">
-                                <h5 class="modal-title">{{ $producto->nombre }}</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                            </div>
-                            <div class="modal-body row">
-                                <div class="col-md-5">
-                                    <img src="{{ $producto->imagenUrl ?? 'https://via.placeholder.com/300' }}" class="img-fluid" alt="{{ $producto->nombre }}">
+                <!-- Modal (misma funcionalidad, nuevo diseño) -->
+                <div class="modal fade" id="modal-producto-{{ $producto->id }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                            <form action="{{ route('carrito.agregar') }}" method="POST">
+                                @csrf
+                                <div class="modal-header modal-header-rosa">
+                                    <h5 class="modal-title">{{ $producto->nombre }}</h5>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                                 </div>
-                                <div class="col-md-7">
-
-
-                                    <p><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
-                                    <p><strong>Material:</strong> {{ $producto->material }}</p>
-                                    <p><strong>Estado:</strong> {{ $producto->estado ?? 'Disponible' }}</p>
-                                    <p><strong>Categoría:</strong> {{ $producto->categoria->categoria ?? 'N/A' }}</p>
-
-
-                                    @if ($producto->variantes->isNotEmpty())
-                                        <input type="hidden" name="productoVarianteId" id="productoVarianteId-{{ $producto->id }}" value="{{ $producto->variantes[0]->id }}">
-
-
-                                        <div class="mb-2">
-                                            <label for="talla-{{ $producto->id }}"><strong>Talla:</strong></label>
-                                            <select id="talla-{{ $producto->id }}" class="form-select talla-select" data-product="{{ $producto->id }}">
-                                                @foreach ($producto->variantes->pluck('talla')->unique() as $talla)
-                                                    <option value="{{ $talla }}">{{ $talla }}</option>
-                                                @endforeach
-                                            </select>
+                                <div class="modal-body">
+                                    <div class="modal-producto-container">
+                                        <div class="modal-producto-imagen">
+                                            <img src="{{ $producto->imagenUrl ?? 'https://via.placeholder.com/300' }}" 
+                                                 alt="{{ $producto->nombre }}">
                                         </div>
-
-
-                                        <div class="mb-2">
-                                            <label for="color-{{ $producto->id }}"><strong>Color:</strong></label>
-                                            <select id="color-{{ $producto->id }}" class="form-select color-select" data-product="{{ $producto->id }}">
-                                                @foreach ($producto->variantes->pluck('color')->unique() as $color)
-                                                    <option value="{{ $color }}">{{ $color }}</option>
-                                                @endforeach
-                                            </select>
+                                        <div class="modal-producto-detalles">
+                                            <p class="producto-categoria">{{ $producto->categoria->categoria ?? 'General' }}</p>
+                                            <p class="producto-descripcion">{{ $producto->descripcion }}</p>
+                                            
+                                            <div class="producto-especificaciones">
+                                                <p><strong>Material:</strong> {{ $producto->material }}</p>
+                                                <p><strong>Estado:</strong> {{ $producto->estado ?? 'Disponible' }}</p>
+                                            </div>
+                                            
+                                            @if ($producto->variantes->isNotEmpty()))
+                                                <input type="hidden" name="productoVarianteId" id="productoVarianteId-{{ $producto->id }}" value="{{ $producto->variantes[0]->id }}">
+                                                
+                                                <div class="variantes-container">
+                                                    <div class="variante-selector">
+                                                        <label for="talla-{{ $producto->id }}">Talla:</label>
+                                                        <select id="talla-{{ $producto->id }}" class="form-select" data-product="{{ $producto->id }}">
+                                                            @foreach ($producto->variantes->pluck('talla')->unique() as $talla)
+                                                                <option value="{{ $talla }}">{{ $talla }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="variante-selector">
+                                                        <label for="color-{{ $producto->id }}">Color:</label>
+                                                        <select id="color-{{ $producto->id }}" class="form-select" data-product="{{ $producto->id }}">
+                                                            @foreach ($producto->variantes->pluck('color')->unique() as $color)
+                                                                <option value="{{ $color }}">{{ $color }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="precio-container">
+                                                    <div>
+                                                        <span class="precio-label">Precio:</span>
+                                                        <span id="precio-{{ $producto->id }}" class="precio-valor">
+                                                            ${{ number_format($producto->variantes[0]->precio, 2) }}
+                                                        </span>
+                                                    </div>
+                                                    
+                                                    <div class="cantidad-container">
+                                                        <label for="cantidad-{{ $producto->id }}">Cantidad:</label>
+                                                        <div class="cantidad-selector">
+                                                            <button type="button" class="cantidad-btn" onclick="this.nextElementSibling.stepDown()">-</button>
+                                                            <input type="number" name="cantidad" id="cantidad-{{ $producto->id }}" 
+                                                                   value="1" min="1" max="{{ $producto->variantes[0]->stock }}" 
+                                                                   class="cantidad-input">
+                                                            <button type="button" class="cantidad-btn" onclick="this.previousElementSibling.stepUp()">+</button>
+                                                        </div>
+                                                        <small id="stock-{{ $producto->id }}" class="stock-disponible">
+                                                            Stock: {{ $producto->variantes[0]->stock }}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </div>
-
-
-                                        <div class="mb-2">
-                                            <label><strong>Precio:</strong></label>
-                                            <p id="precio-{{ $producto->id }}" class="fw-bold text-success h5">${{ number_format($producto->variantes[0]->precio, 2) }}</p>
-                                        </div>
-
-
-                                        <div class="mb-2">
-                                            <label for="cantidad-{{ $producto->id }}"><strong>Cantidad:</strong></label>
-                                            <input type="number" name="cantidad" id="cantidad-{{ $producto->id }}" value="1" min="1" max="{{ $producto->variantes[0]->stock }}" class="form-control cantidad-input" required>
-                                            <small id="stock-{{ $producto->id }}" class="text-muted">Stock disponible: {{ $producto->variantes[0]->stock }}</small>
-                                        </div>
-                                    @endif
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">Confirmar y agregar al carrito</button>
-                            </div>
-                        </form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secundario" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primario">
+                                        <i class="fas fa-cart-plus me-1"></i> Agregar al carrito
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        </div>
     </div>
-
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -109,20 +151,17 @@
                 const stockElem{{ $producto->id }} = document.getElementById('stock-{{ $producto->id }}');
                 const varianteIdInput{{ $producto->id }} = document.getElementById('productoVarianteId-{{ $producto->id }}');
 
-
                 function actualizarDatosProducto() {
                     const talla = tallaSelect{{ $producto->id }}.value;
                     const color = colorSelect{{ $producto->id }}.value;
 
-
                     const variante = variantes{{ $producto->id }}.find(v => v.talla === talla && v.color === color);
-
 
                     if (variante) {
                         precioElem{{ $producto->id }}.innerText = `$${parseFloat(variante.precio).toFixed(2)}`;
                         cantidadInput{{ $producto->id }}.max = variante.stock;
                         cantidadInput{{ $producto->id }}.value = 1;
-                        stockElem{{ $producto->id }}.innerText = `Stock disponible: ${variante.stock}`;
+                        stockElem{{ $producto->id }}.innerText = `Stock: ${variante.stock}`;
                         varianteIdInput{{ $producto->id }}.value = variante.id;
                         cantidadInput{{ $producto->id }}.disabled = variante.stock === 0;
                     } else {
@@ -135,10 +174,8 @@
                     }
                 }
 
-
                 tallaSelect{{ $producto->id }}.addEventListener('change', actualizarDatosProducto);
                 colorSelect{{ $producto->id }}.addEventListener('change', actualizarDatosProducto);
-
 
                 actualizarDatosProducto();
             @endforeach
