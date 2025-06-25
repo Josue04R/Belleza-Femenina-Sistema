@@ -35,7 +35,7 @@
         <a href="{{route('pedidosUser')}}" style="color: white; margin-left: 1rem; text-decoration: none;">Pedidos</a>
         <a href="{{ route('compras') }}" style="color: white; margin-left: 1rem; text-decoration: none;">Compras</a>
         @endauth
-        <a href="#" style="color: white; position: relative; text-decoration: none; display: inline-block;margin-left: 1rem;">
+        <a href="{{route('carrito')}}" style="color: white; position: relative; text-decoration: none; display: inline-block;margin-left: 1rem;">
             <span style="font-size: 1.5rem;">🛒</span>
             <span style="
                 position: absolute;

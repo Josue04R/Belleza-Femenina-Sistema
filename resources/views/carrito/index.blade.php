@@ -8,14 +8,10 @@
 
 @section('content')
 
-<div class="container">
+<div class="container back">
     <h2 class="mb-4 text-center">Carrito de Compras</h2>
 
     <div class="acciones-carrito">
-        <a href="{{ route('carrito.agregar') }}" class="btn btn-success shadow-sm">
-            <i class="bi bi-plus-circle me-2"></i> Agregar Producto
-        </a>
-
         <a href="{{ route('carrito.pago') }}" class="btn btn-purple shadow-sm">
             Proceder al Pago
         </a>

@@ -150,7 +150,7 @@ Route::get('/carrito/editar/{id}', function ($id) {
 // Proceder al pago
 Route::get('/carrito/pago', function () {
     return view('carrito.pago');
-})->name('carrito.pago');
+})->middleware('auth')->name('carrito.pago');
 
 
 

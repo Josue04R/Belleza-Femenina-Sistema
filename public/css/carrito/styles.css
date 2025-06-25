@@ -95,13 +95,14 @@ h2 {
 
 /* Contenedor central */
 .container {
-    max-width: 960px;
-    background-color: white;
+    margin-top: 3rem;
     padding: 2rem 2.5rem;
     border-radius: 1rem;
     box-shadow: 0 10px 30px rgba(145, 47, 93, 0.1);
 }
-
+.back{
+     background-color: white;
+}
 /* Contenedor acciones (botones) */
 .acciones-carrito {
     margin-bottom: 1.8rem;
