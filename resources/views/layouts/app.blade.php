@@ -16,6 +16,9 @@
             min-height: 100vh;
         }
     </style>
+
+    @yield('page_css')
+    
 </head>
 <body>
     <main class="d-flex justify-content-center align-items-center min-vh-100">

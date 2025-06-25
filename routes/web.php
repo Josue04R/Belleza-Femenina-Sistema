@@ -117,9 +117,14 @@ Route::get('/perfil', function () {
     return view('perfil.index');
 })->middleware('auth')-> name('perfil');
 
-Route::get('/perfil/editar', function () {
-    return view('perfil.editar');
-})->middleware('auth')-> name('perfil.editar');
+Route::get('/perfil/editar', [PerfilUsuarioController::class, 'edit']
+)->middleware('auth')-> name('perfil.editar');
+
+Route::post('/perfil/editar', [PerfilUsuarioController::class, 'update']
+)->middleware('auth')-> name('perfil.update');
+
+Route::post('/perfil/delete',[PerfilUsuarioController::class,'delete'])
+->middleware('auth')->name('perfil.eliminar');
 
 Route::get('/pedidos_usuarios', function () {
     return view('pedidos_usuarios.index');
@@ -163,3 +168,7 @@ Route::get('/', function () {
 Route::get('/sobre-nosotros', function () {
     return view('anexos.sobre_nosotros');
 })->name('sobre_nosotros');
+
+Route::get('/preguntas-frecuentes', function () {
+    return view('anexos.preguntas_frecuentes');
+})->name('preguntas_frecuentes');

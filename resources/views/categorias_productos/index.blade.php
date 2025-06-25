@@ -3,72 +3,10 @@
 @section('title', 'Gestión de Categorías')
 
 @section('content')
-<style>
-    :root {
-        --color-primario: #912f5d;
-        --color-primario-hover: #7a294d;
-        --color-secundario: #f2aec7;
-        --color-texto-secundario: #6b0b21;
-    }
 
-    .btn-personalizado {
-        background-color: var(--color-primario);
-        color: white;
-        border: none;
-        border-radius: 30px;
-        padding: 8px 20px;
-        font-weight: 600;
-        transition: 0.3s;
-    }
-
-    .btn-personalizado:hover {
-        background-color: var(--color-primario-hover);
-        color: white;
-        transform: scale(1.03);
-        box-shadow: 0 4px 10px rgba(145, 47, 93, 0.4);
-    }
-
-    .table thead {
-        background-color: var(--color-secundario);
-        color: var(--color-texto-secundario);
-    }
-
-    .form-control:focus {
-        border-color: var(--color-primario);
-        box-shadow: 0 0 0 0.2rem rgba(145, 47, 93, 0.25);
-    }
-
-    .modal-header {
-        background-color: var(--color-primario);
-        color: white;
-    }
-
-    .modal-footer .btn {
-        border-radius: 30px;
-        padding: 6px 16px;
-    }
-
-    .btn-outline-danger {
-        border-color: var(--color-primario);
-        color: var(--color-primario);
-    }
-
-    .btn-outline-danger:hover {
-        background-color: var(--color-primario);
-        color: white;
-    }
-
-    .btn-outline-secondary:hover {
-        background-color: #e9e9e9;
-    }
-
-    .btn-outline-secondary:hover {
-        background-color: var(--color-secundario);
-        color: var(--color-texto-secundario);
-        border-color: var(--color-primario);
-    }
-
-</style>
+@section('page_css')
+  <link href="{{ asset('css/categorias/styles.css') }}" rel="stylesheet">
+@endsection
 
 <div class="container py-4">
 

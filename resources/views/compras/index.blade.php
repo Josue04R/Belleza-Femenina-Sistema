@@ -4,34 +4,9 @@
 
 @section('content')
 
-<style>
-    .bg-purple {
-        background-color: #912f5d !important;
-        color: white !important;
-    }
-    .btn-purple {
-        background-color: #912f5d;
-        border-color: #912f5d;
-        color: white;
-    }
-    .btn-purple:hover {
-        background-color: #7a294d;
-        border-color: #7a294d;
-        color: white;
-    }
-    .table-custom thead {
-        background-color: #f8f2f5;
-    }
-    .badge-status {
-        font-size: 0.85rem;
-        padding: 5px 10px;
-        border-radius: 20px;
-    }
-    .card-hover:hover {
-        box-shadow: 0 0 15px rgba(145, 47, 93, 0.2);
-        transition: all 0.3s ease;
-    }
-</style>
+@section('page_css')
+  <link href="{{ asset('css/compras/styles.css') }}" rel="stylesheet">
+@endsection
 
 <div class="container py-5" style="margin-top: 5rem;">
 

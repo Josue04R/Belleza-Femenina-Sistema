@@ -2,48 +2,11 @@
 
 @section('title', 'Detalles del Producto')
 
+@section('page_css')
+  <link href="{{ asset('css/productos/ver.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
-<style>
-    :root {
-        --color-primario: #912f5d;
-        --color-primario-hover: #7a294d;
-        --color-secundario: #f2aec7;
-        --color-texto-secundario: #6b0b21;
-    }
-
-    .btn-personalizado {
-        background-color: var(--color-primario);
-        color: white;
-        border: none;
-        border-radius: 30px;
-        padding: 8px 22px;
-        font-weight: 600;
-        transition: 0.3s;
-    }
-
-    .btn-personalizado:hover {
-        background-color: var(--color-primario-hover);
-        color: white;
-        transform: scale(1.03);
-        box-shadow: 0 4px 12px rgba(145, 47, 93, 0.4);
-    }
-
-    .detalle-label {
-        font-weight: 600;
-        color: var(--color-texto-secundario);
-    }
-
-    .detalle-valor {
-        color: #333;
-        margin-bottom: 10px;
-    }
-
-    .card-detalle {
-        border: 1px solid #e5e5e5;
-        border-radius: 20px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-</style>
 
 <div class="container py-4">
     <h2 class="text-center mb-4" style="color: var(--color-primario);">Detalles del Producto</h2>
