@@ -32,7 +32,7 @@
 
     <div style="width: 30%; text-align: right; padding-right: 1rem;">
         @auth
-        <a href="#" style="color: white; margin-left: 1rem; text-decoration: none;">Pedidos</a>
+        <a href="{{route('pedidosUser')}}" style="color: white; margin-left: 1rem; text-decoration: none;">Pedidos</a>
         <a href="{{ route('compras') }}" style="color: white; margin-left: 1rem; text-decoration: none;">Compras</a>
         @endauth
         <a href="#" style="color: white; position: relative; text-decoration: none; display: inline-block;margin-left: 1rem;">
