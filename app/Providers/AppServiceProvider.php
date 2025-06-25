@@ -20,13 +20,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-            $appUrl = config('app.url');
-        $cleanUrl = trim($appUrl, '"'); // Quita comillas dobles si existen
+       $appUrl = config('app.url');
+        $cleanUrl = trim($appUrl, '"');
         config(['app.url' => $cleanUrl]);
 
-        // Forzar HTTPS en producción
-        if ($this->app->environment('production')) {
-            URL::forceScheme('https');
-        }
+        // Forzar HTTPS siempre para testear
+        URL::forceScheme('https');
     }
 }
