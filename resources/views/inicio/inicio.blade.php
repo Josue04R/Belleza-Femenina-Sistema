@@ -3,88 +3,145 @@
 
 
 @section('content')
-    <!-- Hero Section -->
-    <section class="hero_section">
-        <div class="container">
-            <h1 class="hero_title">Lo mejor en moda</h1>
-            <p class="hero_subtitle">Descubre las últimas tendencias en moda femenina</p>
-            <a href="#" class="btn btn_primary btn-lg pulse">Ver colección</a>
-        </div>
-    </section>
+   @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
 
-    <!-- Productos destacados -->
-    <section class="container mb-5">
-        <h2 class="text-center section_title">Productos</h2>
-        <div class="row">
-            <!-- Producto 1 -->
-            <div class="col-md-4 col-lg-3">
-                <div class="card product_card">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                            class="card-img-top product_img" alt="Vestido floral">
-                        <span class="product_badge">Más vendido</span>
-                    </div>
+
+    <div class="row">
+        @foreach ($productos as $producto)
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ $producto->imagenUrl ?? 'https://via.placeholder.com/300' }}" class="card-img-top" alt="{{ $producto->nombre }}">
                     <div class="card-body text-center">
-                        <h5 class="card-title product_title">Vestido Floral Primaveral</h5>
-                        <div class="mb-3">
-                            <span class="product_price">$59.99</span>
-                            <span class="product_old_price">$79.99</span>
-                        </div>
-                        <button class="btn btn_add_to_cart">Añadir al carrito</button>
+                        <h5>{{ $producto->nombre }}</h5>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-producto-{{ $producto->id }}">
+                            Añadir al carrito
+                        </button>
                     </div>
                 </div>
             </div>
-            <!-- Producto 2 -->
-            <div class="col-md-4 col-lg-3">
-                <div class="card product_card">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                            class="card-img-top product_img" alt="Blusa elegante">
-                        <span class="product_badge">25% OFF</span>
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title product_title">Blusa Elegante Seda</h5>
-                        <div class="mb-3">
-                            <span class="product_price">$39.99</span>
-                            <span class="product_old_price">$49.99</span>
-                        </div>
-                        <button class="btn btn_add_to_cart">Añadir al carrito</button>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-producto-{{ $producto->id }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form action="{{ route('carrito.agregar') }}" method="POST">
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{ $producto->nombre }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            </div>
+                            <div class="modal-body row">
+                                <div class="col-md-5">
+                                    <img src="{{ $producto->imagenUrl ?? 'https://via.placeholder.com/300' }}" class="img-fluid" alt="{{ $producto->nombre }}">
+                                </div>
+                                <div class="col-md-7">
+
+
+                                    <p><strong>Descripción:</strong> {{ $producto->descripcion }}</p>
+                                    <p><strong>Material:</strong> {{ $producto->material }}</p>
+                                    <p><strong>Estado:</strong> {{ $producto->estado ?? 'Disponible' }}</p>
+                                    <p><strong>Categoría:</strong> {{ $producto->categoria->categoria ?? 'N/A' }}</p>
+
+
+                                    @if ($producto->variantes->isNotEmpty())
+                                        <input type="hidden" name="productoVarianteId" id="productoVarianteId-{{ $producto->id }}" value="{{ $producto->variantes[0]->id }}">
+
+
+                                        <div class="mb-2">
+                                            <label for="talla-{{ $producto->id }}"><strong>Talla:</strong></label>
+                                            <select id="talla-{{ $producto->id }}" class="form-select talla-select" data-product="{{ $producto->id }}">
+                                                @foreach ($producto->variantes->pluck('talla')->unique() as $talla)
+                                                    <option value="{{ $talla }}">{{ $talla }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+                                        <div class="mb-2">
+                                            <label for="color-{{ $producto->id }}"><strong>Color:</strong></label>
+                                            <select id="color-{{ $producto->id }}" class="form-select color-select" data-product="{{ $producto->id }}">
+                                                @foreach ($producto->variantes->pluck('color')->unique() as $color)
+                                                    <option value="{{ $color }}">{{ $color }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+
+                                        <div class="mb-2">
+                                            <label><strong>Precio:</strong></label>
+                                            <p id="precio-{{ $producto->id }}" class="fw-bold text-success h5">${{ number_format($producto->variantes[0]->precio, 2) }}</p>
+                                        </div>
+
+
+                                        <div class="mb-2">
+                                            <label for="cantidad-{{ $producto->id }}"><strong>Cantidad:</strong></label>
+                                            <input type="number" name="cantidad" id="cantidad-{{ $producto->id }}" value="1" min="1" max="{{ $producto->variantes[0]->stock }}" class="form-control cantidad-input" required>
+                                            <small id="stock-{{ $producto->id }}" class="text-muted">Stock disponible: {{ $producto->variantes[0]->stock }}</small>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Confirmar y agregar al carrito</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <!-- Producto 3 -->
-            <div class="col-md-4 col-lg-3">
-                <div class="card product_card">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1543076447-215ad9ba6923?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                            class="card-img-top product_img" alt="Pantalón moderno">
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title product_title">Pantalón Moderno</h5>
-                        <div class="mb-3">
-                            <span class="product_price">$45.99</span>
-                        </div>
-                        <button class="btn btn_add_to_cart">Añadir al carrito</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Producto 4 -->
-            <div class="col-md-4 col-lg-3">
-                <div class="card product_card">
-                    <div class="position-relative">
-                        <img src="https://images.unsplash.com/photo-1582426750875-13465457b9ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
-                            class="card-img-top product_img" alt="Falda plisada">
-                        <span class="product_badge">Nuevo</span>
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title product_title">Falda Plisada Elegante</h5>
-                        <div class="mb-3">
-                            <span class="product_price">$49.99</span>
-                        </div>
-                        <button class="btn btn_add_to_cart">Añadir al carrito</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        @endforeach
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            @foreach ($productos as $producto)
+                const variantes{{ $producto->id }} = @json($producto->variantes);
+                const tallaSelect{{ $producto->id }} = document.querySelector('#talla-{{ $producto->id }}');
+                const colorSelect{{ $producto->id }} = document.querySelector('#color-{{ $producto->id }}');
+                const precioElem{{ $producto->id }} = document.getElementById('precio-{{ $producto->id }}');
+                const cantidadInput{{ $producto->id }} = document.getElementById('cantidad-{{ $producto->id }}');
+                const stockElem{{ $producto->id }} = document.getElementById('stock-{{ $producto->id }}');
+                const varianteIdInput{{ $producto->id }} = document.getElementById('productoVarianteId-{{ $producto->id }}');
+
+
+                function actualizarDatosProducto() {
+                    const talla = tallaSelect{{ $producto->id }}.value;
+                    const color = colorSelect{{ $producto->id }}.value;
+
+
+                    const variante = variantes{{ $producto->id }}.find(v => v.talla === talla && v.color === color);
+
+
+                    if (variante) {
+                        precioElem{{ $producto->id }}.innerText = `$${parseFloat(variante.precio).toFixed(2)}`;
+                        cantidadInput{{ $producto->id }}.max = variante.stock;
+                        cantidadInput{{ $producto->id }}.value = 1;
+                        stockElem{{ $producto->id }}.innerText = `Stock disponible: ${variante.stock}`;
+                        varianteIdInput{{ $producto->id }}.value = variante.id;
+                        cantidadInput{{ $producto->id }}.disabled = variante.stock === 0;
+                    } else {
+                        precioElem{{ $producto->id }}.innerText = 'N/A';
+                        cantidadInput{{ $producto->id }}.max = 0;
+                        cantidadInput{{ $producto->id }}.value = 0;
+                        stockElem{{ $producto->id }}.innerText = 'No disponible';
+                        varianteIdInput{{ $producto->id }}.value = '';
+                        cantidadInput{{ $producto->id }}.disabled = true;
+                    }
+                }
+
+
+                tallaSelect{{ $producto->id }}.addEventListener('change', actualizarDatosProducto);
+                colorSelect{{ $producto->id }}.addEventListener('change', actualizarDatosProducto);
+
+
+                actualizarDatosProducto();
+            @endforeach
+        });
+    </script>
 @endsection
