@@ -14,7 +14,7 @@
         <div class="card-body p-4">
             <p class="mb-3"><strong style="color: #912f5d;">Nombre:</strong>{{auth()->user()->nombre}}</p>
              <p class="mb-3"><strong style="color: #912f5d;">Apellido:</strong>{{auth()->user()->apellido}}</p>
-            <p class="mb-3"><strong style="color: #912f5d;">Correo electrónico:</strong> l{{auth()->user()->email}}</p>
+            <p class="mb-3"><strong style="color: #912f5d;">Correo electrónico:</strong> {{auth()->user()->email}}</p>
             <p class="mb-3"><strong style="color: #912f5d;">Teléfono:</strong> {{auth()->user()->telefono}}</p>
             <p class="mb-4"><strong style="color: #912f5d;">Contraseña:</strong> <span style="letter-spacing: 0.3em;">********</span></p>
 

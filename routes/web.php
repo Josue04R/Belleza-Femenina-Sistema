@@ -172,3 +172,7 @@ Route::get('/sobre-nosotros', function () {
 Route::get('/preguntas-frecuentes', function () {
     return view('anexos.preguntas_frecuentes');
 })->name('preguntas_frecuentes');
+
+Route::get('/guia_tallas', function (){
+    return view ('anexos.guia_tallas');
+})->name('guia_tallas');

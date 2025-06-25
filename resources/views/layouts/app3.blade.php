@@ -523,9 +523,7 @@
                 <h3 class="footer_title">Información</h3>
                 <ul class="footer_links list-unstyled text-center">
                     <li><a href="{{ route('sobre_nosotros') }}">Sobre nosotros</a></li>
-                    <li><a href="#">Blog de moda</a></li>
-                    <li><a href="#">Tendencias</a></li>
-                    <li><a href="#">Guía de tallas</a></li>
+                    <li><a href="{{route('guia_tallas')}}">Guía de tallas</a></li>
                     <li><a href="{{ route('preguntas_frecuentes') }}">Preguntas frecuentes</a></li>
                 </ul>
             </div>
