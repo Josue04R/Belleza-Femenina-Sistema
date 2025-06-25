@@ -17,7 +17,7 @@
     <nav style="background-color: #d6336c; padding: 1rem 0;  width: 100%; top: 0; z-index: 1030; display: flex; align-items: center; justify-content: space-between;">
     
     <div style="width: 30%; text-align: left; padding-left: 1rem;">
-        <a href="#" style="color: white; font-weight: bold; font-size: 1.4rem; text-decoration: none;">Belleza Femenina</a>
+        <a href="/" style="color: white; font-weight: bold; font-size: 1.4rem; text-decoration: none;">Belleza Femenina</a>
     </div>
 
     <div style="width: 40%; text-align: center;">
